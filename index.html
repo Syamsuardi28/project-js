@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Penjualan - Toko Online</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- LOGIN PAGE -->
+    <div class="login-container" id="loginPage">
+      <div class="login-box">
+        <div class="login-logo">🛒</div>
+        <h1>Sistem Penjualan</h1>
+        <p>Silakan login untuk melanjutkan</p>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Masukkan username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Masukkan password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-login">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MAIN APPLICATION -->
+    <div class="app-container" id="appContainer">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <span class="logo-icon">🛒</span>
+            <span class="logo-text">Toko Online</span>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-item active" data-section="dashboard">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Dashboard</span>
+          </div>
+          <div class="nav-item" data-section="products">
+            <span class="nav-icon">📦</span>
+            <span class="nav-text">Produk</span>
+          </div>
+          <div class="nav-item" data-section="orders">
+            <span class="nav-icon">🛍️</span>
+            <span class="nav-text">Pesanan</span>
+          </div>
+          <div class="nav-item" data-section="customers">
+            <span class="nav-icon">👥</span>
+            <span class="nav-text">Pelanggan</span>
+          </div>
+          <div class="nav-item" data-section="reports">
+            <span class="nav-icon">📈</span>
+            <span class="nav-text">Laporan</span>
+          </div>
+          <div class="nav-item" data-section="settings">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-text">Pengaturan</span>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-profile">
+            <div class="user-avatar">👤</div>
+            <div class="user-details">
+              <div class="user-name" id="sidebarUser">User</div>
+              <div class="user-role">Admin</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main-content">
+        <!-- HEADER -->
+        <header class="top-header">
+          <div class="header-left">
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+          </div>
+          <div class="header-right">
+            <div class="header-time" id="waktu">Waktu Sekarang:</div>
+            <div class="user-actions">
+              <span class="welcome-text"
+                >Halo, <strong id="currentUser">User</strong></span
+              >
+              <button class="btn-logout" id="btnLogout">Logout</button>
+            </div>
+          </div>
+        </header>
+
+        <!-- CONTENT SECTIONS -->
+        <main class="content-wrapper">
+          <!-- DASHBOARD SECTION -->
+          <section class="content-section active" id="dashboard">
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-details">
+                  <h3>Total Produk</h3>
+                  <p class="stat-value" id="totalProduk">0</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🛍️</div>
+                <div class="stat-details">
+                  <h3>Total Pesanan</h3>
+                  <p class="stat-value" id="totalPesanan">0</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-details">
+                  <h3>Total Pelanggan</h3>
+                  <p class="stat-value" id="totalPelanggan">0</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-details">
+                  <h3>Total Pendapatan</h3>
+                  <p class="stat-value" id="totalPendapatan">Rp 0</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2>Manipulasi String</h2>
+              <p id="stringOutput" class="string-output">
+                Klik tombol untuk melihat hasil manipulasi string
+              </p>
+              <button class="btn btn-primary" id="btnUbahString">
+                Ubah String
+              </button>
+            </div>
+
+            <div class="card">
+              <h2>Kotak Dialog JavaScript</h2>
+              <p style="margin-bottom: 15px; color: #666">
+                Demonstrasi fungsi Alert, Prompt, dan Confirm
+              </p>
+              <button class="btn btn-primary" id="btnAlert">📢 Alert</button>
+              <button class="btn btn-success" id="btnPrompt">✏️ Prompt</button>
+              <button class="btn btn-danger" id="btnConfirm">❓ Confirm</button>
+            </div>
+          </section>
+
+          <!-- PRODUCTS SECTION -->
+          <section class="content-section" id="products">
+            <div class="card">
+              <div class="card-header">
+                <h2>Daftar Produk</h2>
+                <button
+                  class="btn btn-primary"
+                  onclick="document.getElementById('modalTambahProduk').style.display='flex'"
+                >
+                  + Tambah Produk
+                </button>
+              </div>
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Produk</th>
+                      <th>Kategori</th>
+                      <th>Harga</th>
+                      <th>Stok</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableProduk">
+                    <!-- Data akan diisi oleh JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ORDERS SECTION -->
+          <section class="content-section" id="orders">
+            <div class="card">
+              <h2>Daftar Pesanan</h2>
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>ID Pesanan</th>
+                      <th>Pelanggan</th>
+                      <th>Produk</th>
+                      <th>Jumlah</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tablePesanan">
+                    <!-- Data akan diisi oleh JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- CUSTOMERS SECTION -->
+          <section class="content-section" id="customers">
+            <div class="card">
+              <div class="card-header">
+                <h2>Daftar Pelanggan</h2>
+                <button class="btn btn-primary" id="btnTampilkanPelanggan">
+                  Tampilkan Data
+                </button>
+              </div>
+              <div class="table-container">
+                <table id="tablePelanggan" style="display: none">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>Umur</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bodyPelanggan"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2>Form Tambah Pelanggan</h2>
+              <form id="formPelanggan">
+                <div class="form-grid">
+                  <div class="form-group-app">
+                    <label for="namaPelanggan">Nama Lengkap</label>
+                    <input
+                      type="text"
+                      id="namaPelanggan"
+                      placeholder="Masukkan nama"
+                      required
+                    />
+                  </div>
+                  <div class="form-group-app">
+                    <label for="umurPelanggan">Umur</label>
+                    <input
+                      type="number"
+                      id="umurPelanggan"
+                      placeholder="Masukkan umur"
+                      required
+                    />
+                  </div>
+                  <div class="form-group-app">
+                    <label for="emailPelanggan">Email</label>
+                    <input
+                      type="email"
+                      id="emailPelanggan"
+                      placeholder="contoh@email.com"
+                      required
+                    />
+                  </div>
+                  <div class="form-group-app">
+                    <label for="teleponPelanggan">Telepon</label>
+                    <input
+                      type="tel"
+                      id="teleponPelanggan"
+                      placeholder="08xxxxxxxxxx"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-group-app" style="margin-top: 20px">
+                  <label for="alamatPelanggan">Alamat</label>
+                  <textarea
+                    id="alamatPelanggan"
+                    placeholder="Masukkan alamat lengkap"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  style="margin-top: 20px"
+                >
+                  💾 Simpan Data
+                </button>
+              </form>
+            </div>
+
+            <div class="card">
+              <h2>Data Pelanggan Tersimpan</h2>
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>Umur</th>
+                      <th>Email</th>
+                      <th>Telepon</th>
+                      <th>Alamat</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bodyFormPelanggan"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- REPORTS SECTION -->
+          <section class="content-section" id="reports">
+            <div class="card">
+              <h2>⏰ Timer & Laporan Waktu</h2>
+              <p style="margin-bottom: 20px; color: #666">
+                Demonstrasi setTimeout() dan setInterval()
+              </p>
+              <button class="btn btn-success" id="btnMulai">
+                ▶️ Mulai Jam
+              </button>
+              <button class="btn btn-danger" id="btnHenti">
+                ⏸️ Hentikan Jam
+              </button>
+              <div id="jamBerjalan" class="clock-display">00:00:00</div>
+            </div>
+
+            <div class="card">
+              <h2>Laporan Penjualan</h2>
+              <div class="report-summary">
+                <div class="report-item">
+                  <span class="report-label">Total Transaksi Hari Ini:</span>
+                  <span class="report-value">Rp 0</span>
+                </div>
+                <div class="report-item">
+                  <span class="report-label">Jumlah Pesanan:</span>
+                  <span class="report-value">0 Pesanan</span>
+                </div>
+                <div class="report-item">
+                  <span class="report-label">Produk Terlaris:</span>
+                  <span class="report-value">-</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SETTINGS SECTION -->
+          <section class="content-section" id="settings">
+            <div class="card">
+              <h2>Pengaturan Toko</h2>
+              <form id="formSettings">
+                <div class="form-grid">
+                  <div class="form-group-app">
+                    <label for="namaToko">Nama Toko</label>
+                    <input
+                      type="text"
+                      id="namaToko"
+                      placeholder="Masukkan nama toko"
+                      value="Toko Online"
+                    />
+                  </div>
+                  <div class="form-group-app">
+                    <label for="emailToko">Email Toko</label>
+                    <input
+                      type="email"
+                      id="emailToko"
+                      placeholder="email@toko.com"
+                    />
+                  </div>
+                  <div class="form-group-app">
+                    <label for="teleponToko">Telepon</label>
+                    <input
+                      type="tel"
+                      id="teleponToko"
+                      placeholder="08xxxxxxxxxx"
+                    />
+                  </div>
+                  <div class="form-group-app">
+                    <label for="kategoriToko">Kategori Bisnis</label>
+                    <select id="kategoriToko">
+                      <option value="">Pilih Kategori</option>
+                      <option value="Fashion">Fashion</option>
+                      <option value="Elektronik">Elektronik</option>
+                      <option value="Makanan">Makanan & Minuman</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group-app" style="margin-top: 20px">
+                  <label for="alamatToko">Alamat Toko</label>
+                  <textarea
+                    id="alamatToko"
+                    placeholder="Masukkan alamat lengkap"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  style="margin-top: 20px"
+                >
+                  💾 Simpan Pengaturan
+                </button>
+              </form>
+            </div>
+          </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+          <p>© 2025 Sistem Penjualan Toko Online | Dibuat dengan ❤️</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- MODAL TAMBAH PRODUK -->
+    <div class="modal" id="modalTambahProduk">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Tambah Produk Baru</h2>
+          <button
+            class="modal-close"
+            onclick="document.getElementById('modalTambahProduk').style.display='none'"
+          >
+            ×
+          </button>
+        </div>
+        <form id="formTambahProduk">
+          <div class="form-grid">
+            <div class="form-group-app">
+              <label for="namaProduk">Nama Produk</label>
+              <input
+                type="text"
+                id="namaProduk"
+                placeholder="Masukkan nama produk"
+                required
+              />
+            </div>
+            <div class="form-group-app">
+              <label for="kategoriProduk">Kategori</label>
+              <select id="kategoriProduk" required>
+                <option value="">Pilih Kategori</option>
+                <option value="Elektronik">Elektronik</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Makanan">Makanan</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div class="form-group-app">
+              <label for="hargaProduk">Harga (Rp)</label>
+              <input type="number" id="hargaProduk" placeholder="0" required />
+            </div>
+            <div class="form-group-app">
+              <label for="stokProduk">Stok</label>
+              <input type="number" id="stokProduk" placeholder="0" required />
+            </div>
+          </div>
+          <div class="form-group-app" style="margin-top: 20px">
+            <label for="deskripsiProduk">Deskripsi</label>
+            <textarea
+              id="deskripsiProduk"
+              placeholder="Masukkan deskripsi produk"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            style="margin-top: 20px"
+          >
+            💾 Simpan Produk
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
